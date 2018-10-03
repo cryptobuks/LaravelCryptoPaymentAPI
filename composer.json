@@ -1,12 +1,12 @@
 {
     "name": "omnitask/cryptopaymentapi",
     "description": ":description",
-    "license": "license",
+    "license": "proprietary",
     "authors": [
         {
-            "name": "author name",
-            "email": "author email",
-            "homepage": "author homepage"
+            "name": "Omnitask",
+            "email": "admir@omnitask.ba",
+            "homepage": "https://github.com/Omnitasker/LaravelCryptoPaymentAPI"
         }
     ],
     "homepage": "https://github.com/omnitask/cryptopaymentapi",

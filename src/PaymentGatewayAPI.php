@@ -33,20 +33,27 @@ class PaymentGatewayAPI
         $this->apiUrl = config('payment-gateway-api-key');
     }
     
-    public function paymentConfirmed($payment) {
-        $url = "/hooks/confirm";
-        Log::info('PaymentGatewayAPI paymentConfirmed ' . $payment->user->email. ' case ID:'.$payment->case_id);
-        $data['case_id'] = $payment->case_id;
-        $data['approved'] = 'yes';
+    
+    public function initiatePayment($amount, $currency, $order_id) {
+        $url = "/";
+        Log::info('PaymentGatewayAPI initiatePayment ' . $amount. ' :'.$currency.''.$order_id);
+        $data['token'] = config('api-key');
+        $data['amount'] = $amount;
+        $data['currency'] = $currency;
+        $data['order_number'] = $order_id;
+        $data['is_demo'] = $is_demo;
+        $data['ok_url'] =  config('ok-url');
+        $data['fail_url'] =  config('fail-url');
+        $data['confirm_url'] =  config('confirm-url');
+
         $user  = $payment->user;
         $hash = $payment->amount . $payment->id . $payment->shopPlugin->api_secret;
         $data['hash'] = $hash;
          
-        $result = $this->execute($url, [], $data, "get");
+        $result = $this->execute($url, [], $data, "post");
         Log::info('PaymentGatewayAPI paymentConfirmed response: ' . print_r($result, true));
         return $this->processResult($result, null, "Failed to register user to PaymentGatewayAPI");
     }
-    
 
     private function constructFullUrl($url, $params) {
         $fullUrl =  $this->apiScheme . "://" . $this->apiUrl . '/'  . $url;

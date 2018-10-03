@@ -34,7 +34,7 @@ class PaymentGatewayAPI
     
     
     public function initiatePayment($amount, $currency, $order_id, $is_demo) {
-        $url = "/";
+        $url = "";
         Log::info('PaymentGatewayAPI initiatePayment ' . $amount. ' :'.$currency.''.$order_id);
         
         $token =  config('api-key');
@@ -42,20 +42,20 @@ class PaymentGatewayAPI
         $digest_calculated = $amount . $currency . $order_id . $secret_key . $token;
         $digest_hash = hash("sha256", $digest_calculated);
 
-        $data['token'] = config('cryptopaymentapi.api-key');
+        $data['token'] = config('api-key');
         $data['amount'] = $amount;
         $data['currency'] = $currency;
         $data['order_number'] = $order_id;
         $data['is_demo'] = $is_demo;
-        $data['ok_url'] =  config('cryptopaymentapi.ok-url');
-        $data['fail_url'] =  config('cryptopaymentapi.fail-url');
-        $data['confirm_url'] =  config('cryptopaymentapi.confirm-url');
-        $data['confirm_url'] =  config('cryptopaymentapi.confirm-url');
+        $data['ok_url'] =  config('ok-url');
+        $data['fail_url'] =  config('fail-url');
+        $data['confirm_url'] =  config('confirm-url');
+        $data['confirm_url'] =  config('confirm-url');
         $data['digest'] = $digest_hash;
 
         $result = $this->execute($url, [], $data, "post");
         Log::info('PaymentGatewayAPI paymentConfirmed response: ' . print_r($result, true));
-        return $this->processResult($result, null, "Failed to register user to PaymentGatewayAPI");
+        return $this->processResult($result, null, "Failed to initiate payment to PaymentGatewayAPI");
     }
 
     private function constructFullUrl($url, $params) {

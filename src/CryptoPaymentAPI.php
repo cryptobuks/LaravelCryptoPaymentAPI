@@ -1,7 +1,7 @@
 <?php
 
 namespace Omnitask\CryptoPaymentAPI;
-use PaymentGatewayAPI;
+use Omnitask\CryptoPaymentAPI\PaymentGatewayAPI;
 
 class CryptoPaymentAPIResponse {
     public $success;

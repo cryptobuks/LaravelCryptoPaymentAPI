@@ -4,7 +4,6 @@ namespace Omnitask\CryptoPaymentAPI;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
-use Ramsey\Uuid\Uuid;
 use Exception;
 use Log;
 
@@ -29,12 +28,12 @@ class PaymentGatewayAPI
     protected $apiUrl;
 
     public function __construct() {
-        $this->apiScheme = config('payment-gateway-api-scheme');
-        $this->apiUrl = config('payment-gateway-api-key');
+        $this->apiScheme = config('cryptopaymentapi.payment-gateway-api-scheme');
+        $this->apiUrl = config('cryptopaymentapi.payment-gateway-api-key');
     }
     
     
-    public function initiatePayment($amount, $currency, $order_id) {
+    public function initiatePayment($amount, $currency, $order_id, $is_demo) {
         $url = "/";
         Log::info('PaymentGatewayAPI initiatePayment ' . $amount. ' :'.$currency.''.$order_id);
         
@@ -43,15 +42,15 @@ class PaymentGatewayAPI
         $digest_calculated = $amount . $currency . $order_id . $secret_key . $token;
         $digest_hash = hash("sha256", $digest_calculated);
 
-        $data['token'] = config('api-key');
+        $data['token'] = config('cryptopaymentapi.api-key');
         $data['amount'] = $amount;
         $data['currency'] = $currency;
         $data['order_number'] = $order_id;
         $data['is_demo'] = $is_demo;
-        $data['ok_url'] =  config('ok-url');
-        $data['fail_url'] =  config('fail-url');
-        $data['confirm_url'] =  config('confirm-url');
-        $data['confirm_url'] =  config('confirm-url');
+        $data['ok_url'] =  config('cryptopaymentapi.ok-url');
+        $data['fail_url'] =  config('cryptopaymentapi.fail-url');
+        $data['confirm_url'] =  config('cryptopaymentapi.confirm-url');
+        $data['confirm_url'] =  config('cryptopaymentapi.confirm-url');
         $data['digest'] = $digest_hash;
 
         $result = $this->execute($url, [], $data, "post");

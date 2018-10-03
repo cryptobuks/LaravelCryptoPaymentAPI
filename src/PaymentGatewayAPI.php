@@ -37,8 +37,8 @@ class PaymentGatewayAPI
         $url = "";
         Log::info('PaymentGatewayAPI initiatePayment ' . $amount. ' :'.$currency.''.$order_id);
         
-        $token =  config('api-key');
-        $secret_key =  config('api-secret');
+        $token =  config('cryptopaymentapi.api-key');
+        $secret_key =  config('cryptopaymentapi.api-secret');
         $digest_calculated = $amount . $currency . $order_id . $secret_key . $token;
         $digest_hash = hash("sha256", $digest_calculated);
 
@@ -47,10 +47,9 @@ class PaymentGatewayAPI
         $data['currency'] = $currency;
         $data['order_number'] = $order_id;
         $data['is_demo'] = $is_demo;
-        $data['ok_url'] =  config('ok-url');
-        $data['fail_url'] =  config('fail-url');
-        $data['confirm_url'] =  config('confirm-url');
-        $data['confirm_url'] =  config('confirm-url');
+        $data['ok_url'] =  config('cryptopaymentapi.ok-url');
+        $data['fail_url'] =  config('cryptopaymentapi.fail-url');
+        $data['confirm_url'] =  config('cryptopaymentapi.confirm-url');
         $data['digest'] = $digest_hash;
 
         $result = $this->execute($url, [], $data, "post");

@@ -18,9 +18,9 @@ class CryptoPaymentAPIResponse {
 }
 class CryptoPaymentAPI
 {
-   public function initiatePayment($amount, $currency, $order_id){
+   public function initiatePayment($amount, $currency, $order_id, $is_demo){
         $pgApi = new PaymentGatewayAPI();
-        $result = $pgApi->initiatePayment($amount, $currency, $order_id);
+        $result = $pgApi->initiatePayment($amount, $currency, $order_id, $is_demo);
 
         if($result['status'] == 200){
              

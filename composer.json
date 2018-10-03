@@ -9,7 +9,7 @@
             "homepage": "https://github.com/Omnitasker/LaravelCryptoPaymentAPI"
         }
     ],
-    "homepage": "https://github.com/omnitask/cryptopaymentapi",
+    "homepage": "https://github.com/Omnitasker/LaravelCryptoPaymentAPI",
     "keywords": ["Laravel", "CryptoPaymentAPI"],
     "require": {
         "illuminate/support": "~5",

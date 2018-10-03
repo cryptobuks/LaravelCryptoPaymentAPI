@@ -37,6 +37,12 @@ class PaymentGatewayAPI
     public function initiatePayment($amount, $currency, $order_id) {
         $url = "/";
         Log::info('PaymentGatewayAPI initiatePayment ' . $amount. ' :'.$currency.''.$order_id);
+        
+        $token =  config('api-key');
+        $secret_key =  config('api-secret');
+        $digest_calculated = $amount . $currency . $order_id . $secret_key . $token;
+        $digest_hash = hash("sha256", $digest_calculated);
+
         $data['token'] = config('api-key');
         $data['amount'] = $amount;
         $data['currency'] = $currency;
@@ -45,11 +51,9 @@ class PaymentGatewayAPI
         $data['ok_url'] =  config('ok-url');
         $data['fail_url'] =  config('fail-url');
         $data['confirm_url'] =  config('confirm-url');
+        $data['confirm_url'] =  config('confirm-url');
+        $data['digest'] = $digest_hash;
 
-        $user  = $payment->user;
-        $hash = $payment->amount . $payment->id . $payment->shopPlugin->api_secret;
-        $data['hash'] = $hash;
-         
         $result = $this->execute($url, [], $data, "post");
         Log::info('PaymentGatewayAPI paymentConfirmed response: ' . print_r($result, true));
         return $this->processResult($result, null, "Failed to register user to PaymentGatewayAPI");

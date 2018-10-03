@@ -42,7 +42,7 @@ class PaymentGatewayAPI
         $digest_calculated = $amount . $currency . $order_id . $secret_key . $token;
         $digest_hash = hash("sha256", $digest_calculated);
 
-        $data['token'] = config('api-key');
+        $data['token'] = $token;
         $data['amount'] = $amount;
         $data['currency'] = $currency;
         $data['order_number'] = $order_id;

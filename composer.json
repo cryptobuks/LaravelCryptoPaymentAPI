@@ -1,0 +1,46 @@
+{
+    "name": "omnitask/cryptopaymentapi",
+    "description": ":description",
+    "license": "license",
+    "authors": [
+        {
+            "name": "author name",
+            "email": "author email",
+            "homepage": "author homepage"
+        }
+    ],
+    "homepage": "https://github.com/omnitask/cryptopaymentapi",
+    "keywords": ["Laravel", "CryptoPaymentAPI"],
+    "require": {
+        "illuminate/support": "~5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Omnitask\\CryptoPaymentAPI\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Omnitask\\CryptoPaymentAPI\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Omnitask\\CryptoPaymentAPI\\CryptoPaymentAPIServiceProvider"
+            ],
+            "aliases": {
+                "CryptoPaymentAPI": "Omnitask\\CryptoPaymentAPI\\Facades\\CryptoPaymentAPI"
+            }
+        }
+    }
+}

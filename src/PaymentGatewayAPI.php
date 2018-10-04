@@ -39,7 +39,6 @@ class PaymentGatewayAPI
         $secret_key =  config('cryptopaymentapi.api-secret');
         $digest_calculated = $amount . $currency . $order_id . $secret_key . $token;
         $digest_hash = hash("sha256", $digest_calculated);
-        Log::info('PaymentGatewayAPI token ' . $token);
 
         $data['token'] = $token;
         $data['amount'] = $amount;
@@ -50,12 +49,16 @@ class PaymentGatewayAPI
         $data['fail_url'] =  url(config('cryptopaymentapi.fail-url'));
         $data['confirm_url'] =  url(config('cryptopaymentapi.confirm-url'));
         $data['digest'] = $digest_hash;
-
+        
+        Log::info('PaymentGatewayAPI initiatePayment ', ['data' => $data]);
+        
         $body = '<form id="redirect-form" action="'.$this->constructFullUrl('', false).'" method="POST">';
         $body .= 'Redirecting to crypto payment gateway...<input type="hidden" value="'.$token.'" name="token">';
+        
         foreach($data as $key => $val){
             $body .= '<input type="hidden" value="'.$val.'" name="'.$key.'">';
         }
+        
         $body .='</form>';
         $body .='<script>document.getElementById("redirect-form").submit();</script>';
         return $body;

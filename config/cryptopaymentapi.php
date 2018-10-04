@@ -6,7 +6,7 @@ return [
      */
     'api-key' => env('PAYMENT_GATEWAY_API_KEY', null),
     'api-secret' => env('PAYMENT_GATEWAY_API_SECRET', null),
-    'payment-gateway-api-key' => env('PAYMENT_GATEWAY_API_URL', 'orangegateway.demo.ba'),
+    'payment-gateway-api-url' => env('PAYMENT_GATEWAY_API_URL', 'orangegateway.demo.ba'),
     'payment-gateway-api-scheme' => env('PAYMENT_GATEWAY_API_SCHEME', 'http'),
     'ok-url' => env('PAYMENT_GATEWAY_API_OK_URL', ''),
     'fail-url' => env('PAYMENT_GATEWAY_API_FAIL_URL', ''),

@@ -23,7 +23,7 @@ class CryptoPaymentAPIServiceProvider extends ServiceProvider
             $this->bootForConsole();
         }
          $this->publishes([
-            __DIR__.'/path/to/config/crypto_payment_api.php' => config_path('cryptopaymentapi.php'),
+           __DIR__.'/../config/cryptopaymentapi.php' => config_path('cryptopaymentapi.php'),
         ]);
     }
 

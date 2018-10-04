@@ -35,7 +35,7 @@ class PaymentGatewayAPI
     
     public function initiatePayment($amount, $currency, $order_id, $is_demo) {
         $url = "";
-        Log::info('PaymentGatewayAPI initiatePayment ' . $amount. ' :'.$currency.''.$order_id);
+        Log::info('PaymentGatewayAPI initiatePayment ' . $currency.$amount .' Order ID #'.$order_id);
         
         $token =  config('cryptopaymentapi.api-key');
         $secret_key =  config('cryptopaymentapi.api-secret');

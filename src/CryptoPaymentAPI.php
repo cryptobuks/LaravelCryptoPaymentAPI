@@ -20,7 +20,8 @@ class CryptoPaymentAPI
 {
    public function initiatePayment($amount, $currency, $order_id, $is_demo){
         $pgApi = new PaymentGatewayAPI();
-        $result = $pgApi->initiatePayment($amount, $currency, $order_id, $is_demo);
+        //amount * 100 conversion to cents
+        $result = $pgApi->initiatePayment($amount * 100, $currency, $order_id, $is_demo);
         return $result;
    }
 }

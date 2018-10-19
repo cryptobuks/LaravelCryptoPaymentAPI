@@ -5,7 +5,6 @@
 [![Build Status][ico-travis]][link-travis]
 [![StyleCI][ico-styleci]][link-styleci]
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
 
 ## Installation
 
@@ -15,17 +14,43 @@ Via Composer
 $ composer require omnitask/cryptopaymentapi
 ```
 
-## Usage
+## Configuration
+For config use .env file
+
+``` bash
+PAYMENT_GATEWAY_API_OK_URL= // Data { order_number, crypto_currency }
+PAYMENT_GATEWAY_API_FAIL_URL= //Data { order_number }
+PAYMENT_GATEWAY_API_CONFIRM_URL= //Data { order_number, crypto_currency, transaction_id, price, order_percentage, hash_digest  }
+PAYMENT_GATEWAY_API_KEY=
+PAYMENT_GATEWAY_API_SECRET=
+```
+or publish config/cryptopaymentapi.php
+
+``` bash
+return [
+    /*
+     * Set the  API KEYS & fail/confirm URL's from the .env file, or set it here.
+     */
+    'api-key' => env('PAYMENT_GATEWAY_API_KEY', null),
+    'api-secret' => env('PAYMENT_GATEWAY_API_SECRET', null),
+    'payment-gateway-api-url' => env('PAYMENT_GATEWAY_API_URL', 'form.migpayments.com'),
+    'payment-gateway-api-scheme' => env('PAYMENT_GATEWAY_API_SCHEME', 'https'),
+    'ok-url' => env('PAYMENT_GATEWAY_API_OK_URL', ''),
+    'fail-url' => env('PAYMENT_GATEWAY_API_FAIL_URL', ''),
+    'confirm-url' => env('PAYMENT_GATEWAY_API_CONFIRM_URL', ''),
+];
+```
+## Usage example
+``` bash
+ $cryptoPaymentAPI = new CryptoPaymentAPI();
+ // Parameters for initiatePayment(total, currency, order_id, is_demo)
+ $result = $cryptoPaymentAPI->initiatePayment($order->total, 'EUR', $order->id, 'yes');
+ return $result; // Redirect to payment gateway window
+```
 
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
-
-## Testing
-
-``` bash
-$ composer test
-```
 
 ## Contributing
 
@@ -37,8 +62,7 @@ If you discover any security related issues, please email author email instead o
 
 ## Credits
 
-- [author name][link-author]
-- [All Contributors][link-contributors]
+Omnitask
 
 ## License
 

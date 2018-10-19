@@ -8,10 +8,10 @@
 
 ## Installation
 
-Via Composer
+Package works with Laravel 5+. You can add it to your composer.json file with:
 
 ``` bash
-$ composer require omnitask/cryptopaymentapi
+$ "omnitask/cryptopaymentapi": "dev-master"
 ```
 
 ## Configuration

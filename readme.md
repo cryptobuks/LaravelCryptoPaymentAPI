@@ -11,7 +11,7 @@
 Package works with Laravel 5+. You can add it to your composer.json file with:
 
 ``` bash
-$ "omnitask/cryptopaymentapi": "dev-master"
+"omnitask/cryptopaymentapi": "dev-master"
 ```
 
 ## Configuration

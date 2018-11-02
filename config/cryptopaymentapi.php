@@ -11,4 +11,5 @@ return [
     'ok-url' => env('PAYMENT_GATEWAY_API_OK_URL', ''),
     'fail-url' => env('PAYMENT_GATEWAY_API_FAIL_URL', ''),
     'confirm-url' => env('PAYMENT_GATEWAY_API_CONFIRM_URL', ''),
+    'partial-url' => env('PAYMENT_GATEWAY_API_CONFIRM_PARTIAL_URL', ''),
 ];

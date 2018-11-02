@@ -48,6 +48,7 @@ class PaymentGatewayAPI
         $data['ok_url'] =  url(config('cryptopaymentapi.ok-url'));
         $data['fail_url'] =  url(config('cryptopaymentapi.fail-url'));
         $data['confirm_url'] =  url(config('cryptopaymentapi.confirm-url'));
+        $data['partial_confirm_url'] =  url(config('cryptopaymentapi.partial-url'));
         $data['digest'] = $digest_hash;
         
         Log::info('PaymentGatewayAPI initiatePayment ', ['data' => $data]);

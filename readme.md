@@ -21,6 +21,7 @@ For config use .env file
 PAYMENT_GATEWAY_API_OK_URL= // Data { order_number, crypto_currency }
 PAYMENT_GATEWAY_API_FAIL_URL= //Data { order_number }
 PAYMENT_GATEWAY_API_CONFIRM_URL= //Data { order_number, crypto_currency, transaction_id, price, order_percentage, hash_digest  }
+PAYMENT_GATEWAY_API_CONFIRM_PARTIAL_URL= //Data { order_number, crypto_currency, transaction_id, price, order_percentage, hash_digest  }
 PAYMENT_GATEWAY_API_KEY=
 PAYMENT_GATEWAY_API_SECRET=
 ```
@@ -38,6 +39,7 @@ return [
     'ok-url' => env('PAYMENT_GATEWAY_API_OK_URL', ''),
     'fail-url' => env('PAYMENT_GATEWAY_API_FAIL_URL', ''),
     'confirm-url' => env('PAYMENT_GATEWAY_API_CONFIRM_URL', ''),
+    'partial-url' => env('PAYMENT_GATEWAY_API_CONFIRM_PARTIAL_URL', ''),
 ];
 ```
 ## Usage example

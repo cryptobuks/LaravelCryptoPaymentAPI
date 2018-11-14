@@ -1,4 +1,4 @@
-# CryptoPaymentAPI
+# MigPayments Gateway API
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
@@ -48,6 +48,21 @@ return [
  // Parameters for initiatePayment(total, currency, order_id, is_demo)
  $result = $cryptoPaymentAPI->initiatePayment($order->total, 'EUR', $order->id, 'yes');
  return $result; // Redirect to payment gateway window
+```
+Confirming order ("confirm-url" callback) example
+``` bash
+ public function confirmOrder(Reqeuest $request){
+    $input = $request->input();
+    
+    $order = Order::find($input['order_number']);
+    
+    $order->status = 1;
+    $order->price = $input['price']
+    $order->transaction_id = $input['transaction_id'];
+    $order->crypto_currency = $input['crypto_currency'];
+    $order->order_percentage =  $input['order_percentage'];
+    $order->save();
+ }
 ```
 
 ## Change log
